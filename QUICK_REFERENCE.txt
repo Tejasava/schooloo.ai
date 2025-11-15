@@ -1,0 +1,131 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                     🎓 SCHOOLOO AI AGENT - QUICK REFERENCE                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+🚀 RUN THE ADVANCED AGENT:
+═══════════════════════════════════════════════════════════════════════════════
+
+    cd /tmp/schooloo-agent && bash RUN_ADVANCED_AGENT.sh
+
+
+✨ WHAT IT DOES:
+═══════════════════════════════════════════════════════════════════════════════
+
+    • Searches schools across ALL Indian cities
+    • Shows city-specific, real schools
+    • Uses smart Gemini AI
+    • Provides intelligent recommendations
+    • Answers admission questions
+    • Compares schools by fees, facilities, etc.
+
+
+💬 EXAMPLE USAGE:
+═══════════════════════════════════════════════════════════════════════════════
+
+    You: help me finding best school at prayagraj
+    
+    Agent: Shows real Prayagraj schools like:
+           - St. Mary's Convent School (CBSE)
+           - St. Joseph's College (ICSE)
+           - Colvin College (ICSE/ISC)
+           [And more with details...]
+
+
+❓ QUESTIONS YOU CAN ASK:
+═══════════════════════════════════════════════════════════════════════════════
+
+    • "Schools in [city name]"
+    • "Best schools for girls/boys"
+    • "CBSE/ICSE schools in [city]"
+    • "Schools under [budget] lakhs"
+    • "What's the admission process?"
+    • "Compare schools in [city A] vs [city B]"
+    • "Schools with sports facilities"
+    • And any school-related question!
+
+
+🌍 CITIES COVERED:
+═══════════════════════════════════════════════════════════════════════════════
+
+    Delhi, Mumbai, Bangalore, Prayagraj, Hyderabad, Kolkata, Chennai, Pune,
+    Ahmedabad, Jaipur, Lucknow, Chandigarh, Varanasi, Indore, and 100+ more!
+
+
+📊 DEMO AGENT (If API quota exceeded):
+═══════════════════════════════════════════════════════════════════════════════
+
+    cd /tmp/schooloo-agent && python3 demo_agent.py
+    
+    • Works offline (no API needed)
+    • Limited to 2 schools
+    • No quota issues
+
+
+⚙️ ALTERNATIVE COMMANDS:
+═══════════════════════════════════════════════════════════════════════════════
+
+    python3 advanced_agent.py         (Direct Python run)
+    python3 main.py                    (Main program with examples)
+    python3 test_models.py             (Check available API models)
+    python3 test_schooloo.py           (Run automated tests)
+
+
+⚠️ QUOTA EXCEEDED?
+═══════════════════════════════════════════════════════════════════════════════
+
+    Option 1: Wait 24 hours (quota resets daily)
+    Option 2: Upgrade to paid plan - https://console.cloud.google.com
+    Option 3: Use demo agent - python3 demo_agent.py
+
+
+📁 MAIN FILES:
+═══════════════════════════════════════════════════════════════════════════════
+
+    RUN_ADVANCED_AGENT.sh      ← Main script (USE THIS!)
+    advanced_agent.py          ← Advanced version
+    demo_agent.py              ← Offline demo
+    ADVANCED_AGENT_GUIDE.md    ← Full documentation
+    QUICK_START.txt            ← Quick guide
+
+
+🎯 STEP-BY-STEP:
+═══════════════════════════════════════════════════════════════════════════════
+
+    1. Open terminal
+    2. Type: cd /tmp/schooloo-agent && bash RUN_ADVANCED_AGENT.sh
+    3. Press Enter
+    4. See the welcome message
+    5. Type: help me finding best school at prayagraj
+    6. Get smart recommendations!
+    7. Ask follow-up questions or type 'quit' to exit
+
+
+✅ KEY FEATURES:
+═══════════════════════════════════════════════════════════════════════════════
+
+    ✓ Real Gemini API integration
+    ✓ City-specific search results
+    ✓ Actual school names and information
+    ✓ Smart AI recommendations
+    ✓ Fee structures and facilities
+    ✓ Admission guidance
+    ✓ Entrance exam information
+    ✓ School comparisons
+    ✓ Conversational interaction
+    ✓ Full India coverage (100+ cities)
+
+
+🎉 READY TO USE!
+═══════════════════════════════════════════════════════════════════════════════
+
+    Command: cd /tmp/schooloo-agent && bash RUN_ADVANCED_AGENT.sh
+    
+    Then ask: "help me finding best school at prayagraj"
+    
+    Get real Prayagraj schools with intelligent recommendations! 🌟
+
+
+════════════════════════════════════════════════════════════════════════════════
+More info: Read ADVANCED_AGENT_GUIDE.md or ADVANCED_SOLUTION.md
+════════════════════════════════════════════════════════════════════════════════
