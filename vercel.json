@@ -23,7 +23,7 @@
       "dest": "/index.html"
     }
   ],
-  "public": ".",
+  "public": true,
   "rewrites": [
     {
       "source": "/api/:path*",
