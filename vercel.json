@@ -22,22 +22,5 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "public": true,
-  "rewrites": [ { "source": "/old", "destination": "/new" },
-    { "source": "/api/:path*", "destination": "/api/index.js" }
-  ]
-    {
-      "source": "/api/:path*",
-      "destination": "/app.py"
-    },
-    {
-      "source": "/:path*.html",
-      "destination": "/$1"
-    },
-    {
-      "source": "/(?!_next|_static|api).*",
-      "destination": "/index.html"
-    }
   ]
 }
