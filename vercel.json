@@ -24,7 +24,9 @@
     }
   ],
   "public": true,
-  "rewrites": [
+  "rewrites": [ { "source": "/old", "destination": "/new" },
+    { "source": "/api/:path*", "destination": "/api/index.js" }
+  ]
     {
       "source": "/api/:path*",
       "destination": "/app.py"
