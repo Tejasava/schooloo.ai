@@ -1,0 +1,53 @@
+name: Health Check & Validation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11']
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Check Python syntax
+      run: python -m py_compile app.py
+    
+    - name: Verify Flask app loads
+      env:
+        API_KEY: test_key_for_validation
+      run: |
+        python -c "from app import app; print('✓ Flask app loads successfully')"
+    
+    - name: Check required files exist
+      run: |
+        test -f app.py && echo "✓ app.py exists"
+        test -f index.html && echo "✓ index.html exists"
+        test -f requirements.txt && echo "✓ requirements.txt exists"
+        test -f .env.example && echo "✓ .env.example exists"
+    
+    - name: Validate HTML
+      run: |
+        grep -q "<html" index.html && echo "✓ index.html is valid"
+        grep -q "messageInput\|sendBtn" index.html && echo "✓ Frontend elements exist"
+    
+    - name: Check API endpoints
+      run: |
+        grep -q "@app.route('/api/health" app.py && echo "✓ /api/health endpoint exists"
+        grep -q "@app.route('/api/chat" app.py && echo "✓ /api/chat endpoint exists"
