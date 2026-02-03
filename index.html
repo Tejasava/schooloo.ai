@@ -504,9 +504,331 @@
         input:focus-visible {
             outline: none;
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(26, 32, 44, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3), 0 0 60px rgba(139, 92, 246, 0.2);
+            animation: slideInDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-header h2 {
+            font-size: 28px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .language-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .language-grid::-webkit-scrollbar-track {
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 3px;
+        }
+
+        .language-grid::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.4);
+            border-radius: 3px;
+        }
+
+        .language-grid::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 92, 246, 0.6);
+        }
+
+        .language-btn {
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.2));
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            color: var(--text-primary);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .language-btn:hover {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(6, 182, 212, 0.3));
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .language-btn.selected {
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 100%);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(26, 32, 44, 0.6);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
+            background: rgba(26, 32, 44, 0.8);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .modal-btn-secondary:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .modal-btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .modal-divider {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .modal-divider::before,
+        .modal-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 35%;
+            height: 1px;
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .modal-divider::before {
+            left: 0;
+        }
+
+        .modal-divider::after {
+            right: 0;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 30px 20px;
+                max-width: 90%;
+            }
+
+            .modal-header h2 {
+                font-size: 22px;
+            }
+
+            .language-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-height: 500px;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+
+            .modal-btn {
+                width: 100%;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
+    <!-- Language Selector Modal -->
+    <div class="modal-overlay hidden" id="languageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Choose Your Language</h2>
+                <p>Select your preferred language to get started</p>
+            </div>
+            <div class="language-grid" id="languageGrid">
+                <button class="language-btn" data-lang="en">🇬🇧 English</button>
+                <button class="language-btn" data-lang="hi">हिंदी</button>
+                <button class="language-btn" data-lang="bn">বাংলা</button>
+                <button class="language-btn" data-lang="te">తెలుగు</button>
+                <button class="language-btn" data-lang="mr">मराठी</button>
+                <button class="language-btn" data-lang="ta">தமிழ்</button>
+                <button class="language-btn" data-lang="gu">ગુજરાતી</button>
+                <button class="language-btn" data-lang="kn">ಕನ್ನಡ</button>
+                <button class="language-btn" data-lang="ml">മലയാളം</button>
+                <button class="language-btn" data-lang="or">ଓଡ଼ିଆ</button>
+                <button class="language-btn" data-lang="pa">ਪੰਜਾਬੀ</button>
+                <button class="language-btn" data-lang="as">অসমীয়া</button>
+                <button class="language-btn" data-lang="ks">کشمیری</button>
+                <button class="language-btn" data-lang="ne">नेपाली</button>
+                <button class="language-btn" data-lang="sd">سندھی</button>
+                <button class="language-btn" data-lang="sa">संस्कृतम्</button>
+                <button class="language-btn" data-lang="ur">اردو</button>
+                <button class="language-btn" data-lang="bo">བོད་སྐད།</button>
+                <button class="language-btn" data-lang="mni">ꯃꯤꯇꯩꯁꯨꯡ</button>
+                <button class="language-btn" data-lang="mai">मैथिली</button>
+                <button class="language-btn" data-lang="si">සිංහල</button>
+                <button class="language-btn" data-lang="doi">डोगरी</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Popup Modal -->
+    <div class="modal-overlay hidden" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Your Account</h2>
+                <p>Save your preferences and get personalized recommendations</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="userName">Full Name</label>
+                    <input type="text" id="userName" name="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Email Address</label>
+                    <input type="email" id="userEmail" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="userPhone">Phone Number</label>
+                    <input type="tel" id="userPhone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="modal-btn modal-btn-secondary" id="skipLoginBtn">Skip for Now</button>
+                    <button type="submit" class="modal-btn modal-btn-primary" id="submitLoginBtn">Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="container">
         <div class="content">
             <!-- Header -->
@@ -569,15 +891,136 @@
         const messageInput = document.getElementById('messageInput');
         const sendBtn = document.getElementById('sendBtn');
         const quickActionButtons = document.querySelectorAll('.quick-btn');
+        const languageModal = document.getElementById('languageModal');
+        const loginModal = document.getElementById('loginModal');
+        const languageButtons = document.querySelectorAll('.language-btn');
+        const loginForm = document.getElementById('loginForm');
+        const skipLoginBtn = document.getElementById('skipLoginBtn');
         
-    // API Configuration
-    // Check if running locally with separate ports (dev) or same origin (prod)
-    const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://localhost:5002/api'
-        : window.location.origin + '/api';
+        // API Configuration
+        const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5002/api'
+            : window.location.origin + '/api';
 
         // State
         let firstMessage = true;
+        let selectedLanguage = localStorage.getItem('selectedLanguage') || null;
+        let sessionId = generateSessionId();
+        let responseCount = 0;
+        let userHasAccount = localStorage.getItem('userHasAccount') === 'true';
+        let userEmail = localStorage.getItem('userEmail') || null;
+
+        // Generate unique session ID
+        function generateSessionId() {
+            return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            if (!selectedLanguage) {
+                showLanguageModal();
+            } else {
+                messageInput.focus();
+            }
+        });
+
+        // Show Language Selector Modal
+        function showLanguageModal() {
+            languageModal.classList.remove('hidden');
+            languageButtons.forEach(btn => {
+                btn.addEventListener('click', selectLanguage);
+            });
+        }
+
+        // Handle Language Selection
+        function selectLanguage(e) {
+            const lang = e.target.dataset.lang;
+            selectedLanguage = lang;
+            localStorage.setItem('selectedLanguage', lang);
+            
+            // Update UI
+            languageButtons.forEach(btn => btn.classList.remove('selected'));
+            e.target.classList.add('selected');
+            
+            // Close modal after selection
+            setTimeout(() => {
+                languageModal.classList.add('hidden');
+                messageInput.focus();
+            }, 300);
+        }
+
+        // Show Login Popup Modal
+        function showLoginModal() {
+            loginModal.classList.remove('hidden');
+            document.getElementById('userName').focus();
+        }
+
+        // Hide Login Popup Modal
+        function hideLoginModal() {
+            loginModal.classList.add('hidden');
+            loginForm.reset();
+        }
+
+        // Handle Skip Login
+        skipLoginBtn.addEventListener('click', hideLoginModal);
+
+        // Handle Login Form Submission
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            const phone = document.getElementById('userPhone').value;
+
+            try {
+                // Submit to backend for logging
+                const backendResponse = await fetch(`${API_BASE_URL}/user/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        phone,
+                        session_id: sessionId
+                    })
+                });
+
+                // Submit to Formspree for email notification
+                const formspreeResponse = await fetch('https://formspree.io/f/xovklyjw', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        session_id: sessionId,
+                        timestamp: new Date().toISOString(),
+                        message: `New user registration from Schooloo AI app`
+                    })
+                });
+
+                if (backendResponse.ok) {
+                    // Mark user as having account - NEVER show popup again
+                    userHasAccount = true;
+                    userEmail = email;
+                    localStorage.setItem('userHasAccount', 'true');
+                    localStorage.setItem('userEmail', email);
+                    localStorage.setItem('userName', name);
+                    
+                    addMessage('✅ Account created successfully! Your preferences have been saved. You won\'t see this form again. A confirmation email has been sent to ' + email + '.', 'bot');
+                    hideLoginModal();
+                } else {
+                    addMessage('❌ Error saving your information. Please try again.', 'bot');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('❌ Error communicating with server.', 'bot');
+            }
+        });
 
         // Event Listeners
         sendBtn.addEventListener('click', sendMessage);
@@ -616,7 +1059,11 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ message })
+                    body: JSON.stringify({
+                        message,
+                        session_id: sessionId,
+                        language: selectedLanguage || 'en'
+                    })
                 });
 
                 if (!response.ok) {
@@ -626,12 +1073,27 @@
                 const data = await response.json();
                 removeTypingIndicator();
 
+                // Update response count and check for login popup
+                if (data.response_count) {
+                    responseCount = data.response_count;
+                }
+
                 if (data.success && data.message) {
                     addMessage(data.message, 'bot');
                 } else if (data.response) {
                     addMessage(data.response, 'bot');
                 } else {
                     addMessage('Sorry, I couldn\'t process your request. Please try again.', 'bot');
+                }
+
+                // Show login popup if triggered AND user doesn't have account yet
+                if (data.show_login_popup && !userHasAccount) {
+                    setTimeout(() => {
+                        showLoginModal();
+                    }, 800);
+                } else if (data.show_login_popup && userHasAccount) {
+                    // User already has account, just show a greeting
+                    console.log('User already has account, skipping popup');
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -699,10 +1161,6 @@
             const typingDiv = document.getElementById('typing-indicator');
             if (typingDiv) typingDiv.remove();
         }
-
-        window.addEventListener('load', () => {
-            messageInput.focus();
-        });
     </script>
 </body>
 </html>
