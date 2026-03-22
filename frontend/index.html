@@ -145,6 +145,26 @@
             animation: pulse 2s infinite;
         }
 
+        .share-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .share-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+        }
+
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
@@ -841,6 +861,10 @@
                     </div>
                 </div>
                 <div class="header-info">
+                    <button class="share-btn" id="shareBtn">
+                        <span>🔗</span>
+                        <span>Share</span>
+                    </button>
                     <div class="status-badge">
                         <div class="status-dot"></div>
                         AI Online
@@ -890,6 +914,7 @@
         const messagesContainer = document.getElementById('messages');
         const messageInput = document.getElementById('messageInput');
         const sendBtn = document.getElementById('sendBtn');
+        const shareBtn = document.getElementById('shareBtn');
         const quickActionButtons = document.querySelectorAll('.quick-btn');
         const languageModal = document.getElementById('languageModal');
         const loginModal = document.getElementById('loginModal');
@@ -1024,6 +1049,7 @@
 
         // Event Listeners
         sendBtn.addEventListener('click', sendMessage);
+        shareBtn.addEventListener('click', shareOrCopyUrl);
         messageInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -1118,6 +1144,37 @@
             messageDiv.appendChild(bubble);
             messagesContainer.appendChild(messageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        async function shareOrCopyUrl() {
+            const url = window.location.href;
+            const shareData = {
+                title: 'Schooloo AI',
+                text: 'Find your perfect school with Schooloo AI!',
+                url: url,
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                    addMessage('✅ Shared successfully!', 'bot');
+                } catch (err) {
+                    console.error('Error sharing:', err);
+                    addMessage('❌ Error sharing. Link copied to clipboard.', 'bot');
+                    copyUrlToClipboard(url);
+                }
+            } else {
+                copyUrlToClipboard(url);
+            }
+        }
+
+        function copyUrlToClipboard(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                addMessage('✅ Link copied to clipboard!', 'bot');
+            }, (err) => {
+                console.error('Could not copy text: ', err);
+                addMessage('❌ Could not copy link.', 'bot');
+            });
         }
 
         function formatBotResponse(text) {
