@@ -1,0 +1,13 @@
+{
+  "name": "schooloo-frontend",
+  "version": "1.0.0",
+  "description": "Schooloo AI Frontend - Find Your Perfect School",
+  "scripts": {
+    "dev": "http-server frontend -p 3000",
+    "build": "echo 'Frontend is static HTML, no build needed'",
+    "start": "http-server frontend -p 5000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.0"
+  }
+}

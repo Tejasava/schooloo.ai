@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: schooloo-ai-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python backend/app.py
+    envVars:
+      - key: API_KEY
+        scope: run
+        value: ${API_KEY}
+      - key: AGENT_MODEL
+        scope: run
+        value: gemini-2.0-flash
+      - key: FLASK_ENV
+        scope: run
+        value: production
+      - key: PORT
+        scope: run
+        value: "5002"
