@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Schooloo - Your Perfect School Discovery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Modern Color Palette */
+            --gradient-1: #FF6B9D;      /* Hot Pink */
+            --gradient-2: #C44569;      /* Deep Red */
+            --accent-purple: #8B5CF6;   /* Vibrant Purple */
+            --accent-cyan: #06B6D4;     /* Cyan Blue */
+            --accent-green: #10B981;    /* Emerald Green */
+            --dark-bg: #0F1419;         /* Very Dark Navy */
+            --card-bg: #1A202C;         /* Dark Card */
+            --darker-bg: #0A0E18;       /* Almost Black */
+            --text-primary: #F8FAFC;    /* Off White */
+            --text-secondary: #CBD5E1;  /* Light Gray */
+            --border-color: #334155;    /* Subtle Border */
+            --glow-color: #FF6B9D;      /* Pink Glow */
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, #1a1f2e 50%, #0f1419 100%);
+            color: var(--text-primary);
+            overflow: hidden;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, #1a1f2e 50%, #0f1419 100%);
+            position: relative;
+        }
+
+        /* Animated Background Effect */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 157, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header - Premium Design */
+        .header {
+            padding: 25px 30px;
+            background: linear-gradient(135deg, rgba(26, 32, 44, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px rgba(255, 107, 157, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .logo-icon {
+            font-size: 42px;
+            animation: bounce 2s infinite;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-name {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--accent-cyan) 50%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .logo-tagline {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: -3px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .header-info {
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--accent-green);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Main Chat Area */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow: hidden;
+            gap: 15px;
+        }
+
+        /* Messages Area */
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px 30px;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .messages::-webkit-scrollbar-thumb {
+            background: rgba(255, 107, 157, 0.3);
+            border-radius: 4px;
+        }
+
+        .messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 107, 157, 0.5);
+        }
+
+        .message {
+            display: flex;
+            animation: slideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 75%;
+        }
+
+        .message.user {
+            align-self: flex-end;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+        }
+
+        .message-bubble {
+            padding: 14px 18px;
+            border-radius: 16px;
+            word-wrap: break-word;
+            line-height: 1.6;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border: 1px solid;
+        }
+
+        .user .message-bubble {
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 100%);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 24px rgba(255, 107, 157, 0.3);
+        }
+
+        .bot .message-bubble {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+            color: var(--text-primary);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Format bot message content */
+        .bot .message-bubble strong {
+            color: var(--gradient-1);
+            font-weight: 900;
+        }
+
+        .bot .message-bubble em,
+        .bot .message-bubble .fees {
+            font-style: italic;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .bot .message-bubble h3 {
+            color: var(--gradient-1);
+            font-weight: 900;
+            margin: 10px 0 6px 0;
+            font-size: 15px;
+        }
+
+        .bot .message-bubble p {
+            margin: 6px 0;
+            line-height: 1.7;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            width: fit-content;
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-1), var(--accent-cyan));
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 1; }
+            30% { transform: translateY(-10px); opacity: 0.6; }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 100px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .empty-state h2 {
+            font-size: 28px;
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 20px 30px 30px;
+            background: transparent;
+            border-top: 1px solid rgba(255, 107, 157, 0.1);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .quick-btn {
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.2));
+            border: 1.5px solid rgba(139, 92, 246, 0.4);
+            color: var(--text-primary);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .quick-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(139, 92, 246, 0.3));
+            border-color: var(--gradient-1);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(255, 107, 157, 0.2);
+        }
+
+        .quick-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Search Bar - Premium Design */
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, rgba(26, 32, 44, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+            border: 2px solid var(--gradient-1);
+            border-radius: 20px;
+            padding: 14px 22px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .search-container:focus-within {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.4), 0 0 60px rgba(255, 107, 157, 0.2);
+            background: linear-gradient(135deg, rgba(26, 32, 44, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+        }
+
+        .search-container:focus-within::before {
+            left: 100%;
+        }
+
+        .search-icon {
+            font-size: 18px;
+            color: var(--gradient-1);
+            flex-shrink: 0;
+        }
+
+        #messageInput {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            padding: 5px;
+            font-weight: 500;
+        }
+
+        #messageInput::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 100%);
+            border: none;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
+            flex-shrink: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .send-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .message {
+                max-width: 90%;
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header {
+                padding: 18px 20px;
+            }
+
+            .logo-name {
+                font-size: 24px;
+            }
+
+            .messages {
+                padding: 18px 20px;
+            }
+
+            .input-area {
+                padding: 15px 20px 20px;
+            }
+
+            .search-container {
+                padding: 12px 16px;
+                border-radius: 16px;
+            }
+
+            .send-btn {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+        }
+
+        /* Focus states for accessibility */
+        button:focus-visible {
+            outline: 2px solid var(--accent-cyan);
+            outline-offset: 2px;
+        }
+
+        input:focus-visible {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <!-- Header -->
+            <div class="header">
+                <div class="logo-container">
+                    <div class="logo-icon">🎓</div>
+                    <div class="logo-text">
+                        <div class="logo-name">SCHOOLOO</div>
+                        <div class="logo-tagline">Find Your Perfect School</div>
+                    </div>
+                </div>
+                <div class="header-info">
+                    <div class="status-badge">
+                        <div class="status-dot"></div>
+                        AI Online
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Container -->
+            <div class="chat-container">
+                <!-- Messages -->
+                <div class="messages" id="messages">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎓</div>
+                        <h2>Welcome to Schooloo!</h2>
+                        <p>Discover amazing schools tailored to your needs. Ask me anything about schools across India!</p>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area">
+                    <!-- Quick Actions -->
+                    <div class="quick-actions" id="quickActionsContainer">
+                        <button class="quick-btn" data-question="Find best CBSE schools in Prayagraj">🔍 Prayagraj</button>
+                        <button class="quick-btn" data-question="Best schools in Delhi under 50000">💰 Budget Delhi</button>
+                        <button class="quick-btn" data-question="Science schools in Mumbai">📚 Mumbai Science</button>
+                        <button class="quick-btn" data-question="Top boarding schools in India">🏠 Boarding</button>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <span class="search-icon">🔍</span>
+                        <input 
+                            type="text" 
+                            id="messageInput" 
+                            placeholder="Search schools, ask questions, get recommendations..."
+                            autocomplete="off"
+                        >
+                        <button class="send-btn" id="sendBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const quickActionButtons = document.querySelectorAll('.quick-btn');
+        
+    // API Configuration
+    // Use the same origin the page was loaded from so frontend matches backend port (works in dev and prod).
+    const API_BASE_URL = window.location.origin + '/api';
+
+        // State
+        let firstMessage = true;
+
+        // Event Listeners
+        sendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        quickActionButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                messageInput.value = btn.dataset.question;
+                sendMessage();
+            });
+        });
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            if (firstMessage) {
+                messagesContainer.innerHTML = '';
+                firstMessage = false;
+            }
+
+            addMessage(message, 'user');
+            messageInput.value = '';
+            messageInput.focus();
+
+            showTypingIndicator();
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                removeTypingIndicator();
+
+                if (data.success && data.message) {
+                    addMessage(data.message, 'bot');
+                } else if (data.response) {
+                    addMessage(data.response, 'bot');
+                } else {
+                    addMessage('Sorry, I couldn\'t process your request. Please try again.', 'bot');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                removeTypingIndicator();
+                addMessage('❌ Error: Could not reach the server. Make sure backend is running.', 'bot');
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            
+            if (sender === 'bot') {
+                bubble.innerHTML = formatBotResponse(text);
+            } else {
+                bubble.textContent = text;
+            }
+            
+            messageDiv.appendChild(bubble);
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function formatBotResponse(text) {
+            let formatted = text;
+            formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+            formatted = formatted.replace(/^([A-Z][^:\n]*):(.*)$/gm, '<h3>$1:</h3><p>$2</p>');
+            formatted = formatted.replace(/₹[\d.,kLmKM]+(\s*[a-z\-\/]*)?/gi, '<em class="fees">$&</em>');
+            formatted = formatted.replace(/^-\s+(.+)$/gm, '<p>• $1</p>');
+            formatted = formatted.split('\n').map(line => {
+                line = line.trim();
+                if (!line) return '';
+                if (!line.includes('<') && !line.includes('</')) {
+                    return `<p>${line}</p>`;
+                }
+                return line;
+            }).join('');
+            formatted = formatted.replace(/<\/p>\s*<p>/g, '</p><p>');
+            return formatted;
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.id = 'typing-indicator';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'typing-indicator';
+            
+            for (let i = 0; i < 3; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'typing-dot';
+                bubble.appendChild(dot);
+            }
+            
+            typingDiv.appendChild(bubble);
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typingDiv = document.getElementById('typing-indicator');
+            if (typingDiv) typingDiv.remove();
+        }
+
+        window.addEventListener('load', () => {
+            messageInput.focus();
+        });
+    </script>
+</body>
+</html>
